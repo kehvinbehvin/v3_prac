@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'first_app.apps.FirstAppConfig',
     'corsheaders',
+    'tweets.apps.TweetsConfig',
+    'direct_message.apps.DirectMessageConfig',
 ]
 
 MIDDLEWARE = [
@@ -84,7 +86,11 @@ WSGI_APPLICATION = 'main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'v3_db',
+        'NAME': 'v3_database',
+        'USER': 'gerald',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
