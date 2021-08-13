@@ -11,6 +11,7 @@ django-cors-headers = "*"
 gunicorn = "*"
 django-heroku = "*"
 psycopg2 = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 
