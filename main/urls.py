@@ -13,10 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from direct_message.views import DmView, DmViewID
 from django.contrib import admin
 from django.urls import path, include
 from first_app.views import FirstViewSet
 from rest_framework import routers
+from tweets.views import TweetsViewSet
+
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -34,9 +37,12 @@ router.register(r'first', FirstViewSet)
 # router.register(r'user/viewall', UserListView)
 # router.register(r'messages/view',MessageListView)
 # router.register(r'messages/create',MessageCreateView)
+router.register(r'tweets', TweetsViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('messages/', DmView.as_view()),
+    path('messages/<id>/', DmViewID.as_view()),
     path('', include(router.urls)),
     path('api-auth/',include('rest_framework.urls', namespace='rest_framework')),
     path('api/token/',TokenObtainPairView.as_view(), name='token_obtain_pair'),

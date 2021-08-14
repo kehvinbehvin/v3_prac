@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
     'custom.apps.CustomConfig'
+    'tweets.apps.TweetsConfig',
+    'direct_message.apps.DirectMessageConfig',
     # 'users',
 ]
 
@@ -89,7 +91,11 @@ WSGI_APPLICATION = 'main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'v3_db',
+        'NAME': 'v3_database',
+        'USER': 'gerald',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
