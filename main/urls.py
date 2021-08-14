@@ -21,13 +21,19 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-from accounts.views import LoginView, RegisterUsersView
+from accounts.views import LoginView, RegisterUsersView, UserListView
+from custom.views import MessageListView, MessageCreateView
 
 
 # create a new router
 router = routers.DefaultRouter()
 # register our viewsets
 router.register(r'first', FirstViewSet)
+# router.register(r'signup', RegisterUsersView)
+# router.register(r'user/login',LoginView)
+# router.register(r'user/viewall', UserListView)
+# router.register(r'messages/view',MessageListView)
+# router.register(r'messages/create',MessageCreateView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,4 +43,7 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('user/login/',LoginView.as_view(),name='user-login'),
     path('user/signup/', RegisterUsersView.as_view(),  name='user-signup'),
+    path('user/viewall/', UserListView.as_view(), name='user-all'),
+    path('messages/view/',MessageListView.as_view(), name='messages'),
+    path('messages/create/',MessageCreateView.as_view(), name='new_message'),
 ]

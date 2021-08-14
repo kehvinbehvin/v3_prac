@@ -16,6 +16,7 @@ from dotenv import load_dotenv
 import django_heroku
 from datetime import timedelta
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -45,6 +46,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'first_app.apps.FirstAppConfig',
     'corsheaders',
+    'django_filters',
+    'custom.apps.CustomConfig'
     # 'users',
 ]
 
@@ -163,7 +166,10 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_AUTHENTICATION_CLASSES':(
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ],
 }
 #
 
