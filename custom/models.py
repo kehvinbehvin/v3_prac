@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Messages(models.Model):
-    sender = models.ForeignKey(User, on_delete=models.CASCADE,related_name='sender_id')
+    sender = models.ForeignKey(User, on_delete=models.CASCADE,related_name='sender_c_id')
     recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipient_id')
     message = models.CharField(max_length=200)
 

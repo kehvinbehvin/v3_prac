@@ -15,7 +15,6 @@ class DmView(View):
         dm = Direct.objects.all()
         serialized = serialize("json", dm)
         final_data = json.loads(serialized)
-        print(dm)
         return JsonResponse(final_data, safe=False)
 
     def post (self, request):
@@ -25,10 +24,10 @@ class DmView(View):
         return JsonResponse(final_data, safe=False)
 
 class DmViewID(View):
-    def get (self, request, id):
-        print("ALL", Direct.objects.all())
-        sender = Direct.objects.all().filter(Q(recipient=id) | Q(sender=id))
-        print("SENDER OVER HERE", sender)
+    def get (self, request, id, friend_id):
+        sender = Direct.objects.all().filter(Q(recipient=id, sender=friend_id) | Q(sender=id, recipient=friend_id))
+        print(request.user.is_authenticated)
+        print(request.user)
         serialized = serialize("json", sender)
         final_data = json.loads(serialized)
         return JsonResponse(final_data, safe= False)

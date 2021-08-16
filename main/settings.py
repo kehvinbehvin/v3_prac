@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'first_app.apps.FirstAppConfig',
     'corsheaders',
     'django_filters',
-    'custom.apps.CustomConfig'
+    'custom.apps.CustomConfig',
     'tweets.apps.TweetsConfig',
     'direct_message.apps.DirectMessageConfig',
     # 'users',
@@ -91,11 +91,11 @@ WSGI_APPLICATION = 'main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'v3_database',
-        'USER': 'gerald',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': 'v3_db',
+        # 'USER': 'gerald',
+        # 'PASSWORD': '1234',
+        # 'HOST': 'localhost',
+        # 'PORT': '5432',
     }
 }
 
@@ -141,7 +141,7 @@ STATIC_URL = '/static/'
 
 # Set to allow any so that users can access the login and registration
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,

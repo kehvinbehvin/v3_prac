@@ -24,7 +24,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-from accounts.views import LoginView, RegisterUsersView, UserListView
+from accounts.views import LoginView, RegisterUsersView, UserListView, LogoutView
 from custom.views import MessageListView, MessageCreateView
 
 
@@ -32,17 +32,12 @@ from custom.views import MessageListView, MessageCreateView
 router = routers.DefaultRouter()
 # register our viewsets
 router.register(r'first', FirstViewSet)
-# router.register(r'signup', RegisterUsersView)
-# router.register(r'user/login',LoginView)
-# router.register(r'user/viewall', UserListView)
-# router.register(r'messages/view',MessageListView)
-# router.register(r'messages/create',MessageCreateView)
 router.register(r'tweets', TweetsViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('messages/', DmView.as_view()),
-    path('messages/<id>/', DmViewID.as_view()),
+    path('messages/<id>/<friend_id>', DmViewID.as_view()),
     path('', include(router.urls)),
     path('api-auth/',include('rest_framework.urls', namespace='rest_framework')),
     path('api/token/',TokenObtainPairView.as_view(), name='token_obtain_pair'),
@@ -50,6 +45,7 @@ urlpatterns = [
     path('user/login/',LoginView.as_view(),name='user-login'),
     path('user/signup/', RegisterUsersView.as_view(),  name='user-signup'),
     path('user/viewall/', UserListView.as_view(), name='user-all'),
-    path('messages/view/',MessageListView.as_view(), name='messages'),
-    path('messages/create/',MessageCreateView.as_view(), name='new_message'),
+    path('user/logout/',LogoutView.as_view(),name='user-logout')
+    # path('messages/view/',MessageListView.as_view(), name='messages'),
+    # path('messages/create/',MessageCreateView.as_view(), name='new_message'),
 ]

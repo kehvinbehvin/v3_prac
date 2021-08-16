@@ -4,15 +4,17 @@
 import django_filters.rest_framework
 from django.shortcuts import render, redirect
 from rest_framework import generics, permissions, status
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import UserSerializer, TokenSerializer
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 # JWT settings
 from rest_framework_simplejwt.tokens import RefreshToken
 
 class LoginView(generics.CreateAPIView):
+
     """
     POST user/login/
     """
@@ -72,3 +74,12 @@ class UserListView(generics.ListAPIView):
     serializer_class = UserSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields =['username','email']
+
+class LogoutView(APIView):
+    def get(self, request, format=None):
+        # simply delete the token to force a login
+        print(User.IsAuthenticated)
+        logout(request)
+        print(User.IsAuthenticated)
+        # request.user.auth_token.delete()
+        return Response(status=status.HTTP_200_OK)
